@@ -1,9 +1,8 @@
 import pandas as pd
-from functions import *
-from tkinter.filedialog import askopenfile
+from functions import euclidean_dist
 
-file = askopenfile(mode='r', title='Lütfen birleştirme bilgilerinin bulunduğu dosyayı seçin')
-lines = file.readlines()
+with open('Data.csv', 'r') as file:
+    lines = file.readlines()
 
 lines.remove(lines[0])
 
@@ -15,14 +14,14 @@ for line in lines:
 
 distance_map = []
 temp_list = []
-Big_M = 999;
+Big_M = float('inf');
 for i in range(len(lines)):
     temp_list = []
     for j in range(len(lines)):
         if i == j:
             temp_list.append(Big_M)
         else:
-            temp_list.append(euclidian_dist(int_lines, i, j))
+            temp_list.append(euclidean_dist(int_lines, i, j))
     distance_map.append(temp_list)
 
 # Export to excel
